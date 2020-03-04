@@ -15,7 +15,7 @@ class Kontak extends REST_Controller {
     function index_get() {
         $id = $this->get('id');
         if ($id == '') {
-            $kontak = $this->db->get('telepon')->result();
+            $kontak = $this->db->get('telepon')->result(); //memunculkan data telepon pada database
         } else {
             $this->db->where('id', $id);
             $kontak = $this->db->get('telepon')->result();
@@ -28,7 +28,7 @@ class Kontak extends REST_Controller {
                     'id'           => $this->post('id'),
                     'nama'          => $this->post('nama'),
                     'nomor'    => $this->post('nomor'));
-        $insert = $this->db->insert('telepon', $data);
+        $insert = $this->db->insert('telepon', $data); //memasukan data telepon pada database
         if ($insert) {
             $this->response($data, 200);
         } else {
@@ -43,7 +43,7 @@ class Kontak extends REST_Controller {
                     'nama'          => $this->put('nama'),
                     'nomor'    => $this->put('nomor'));
         $this->db->where('id', $id);
-        $update = $this->db->update('telepon', $data);
+        $update = $this->db->update('telepon', $data); //memperbaruhi data telepon pada database
         if ($update) {
             $this->response($data, 200);
         } else {
@@ -54,7 +54,7 @@ class Kontak extends REST_Controller {
     function index_delete() {
         $id = $this->delete('id');
         $this->db->where('id', $id);
-        $delete = $this->db->delete('telepon');
+        $delete = $this->db->delete('telepon'); //menghapus data telepon pada database
         if ($delete) {
             $this->response(array('status' => 'success'), 201);
         } else {
